@@ -56,6 +56,8 @@ git reset HEAD filename &amp;amp;&amp;amp; git checkout -- filename //revert **a
 &lt;li&gt;&lt;p&gt;Change&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;git rm xxx
+git rm --cache xxx // remove tracked file, but keep it locally
+git rm -f xxx // remove file physically.
 git mv xxx yyy
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
