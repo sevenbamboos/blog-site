@@ -37,77 +37,72 @@ git config --global alias.br branch
 git config --list //~\.gitconfig
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Check in
-```
-git init
+&lt;li&gt;&lt;p&gt;Check in&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git init
 git status
 git add .
-git commit -m &amp;ldquo;xxx&amp;rdquo;&lt;/p&gt;&lt;/li&gt;
+git commit -m &amp;quot;xxx&amp;quot;
+git commit -a -m &amp;quot;xxx&amp;quot; // without git add
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Revert&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git reflog //review commit id for revert
+git reset --hard xxx //commit id or HEAD^ (the next version), HEAD^^ (the next next version)
+git checkout -- filename //revert when there is no local change **added**
+git reset HEAD filename &amp;amp;&amp;amp; git checkout -- filename //revert **added** change, then revert local change
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Change&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git rm xxx
+git rm --cache xxx // remove tracked file, but keep it locally
+git rm -f xxx // remove file physically.
+git mv xxx yyy
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Branch&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git checkout -b xxx // git branch xxx &amp;amp;&amp;amp; git checkout xxx
+git merge xxx
+git branch -d xxx //delete branch
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;gitignore when it doesn&amp;rsquo;t work:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git rm -r --cached .
+git add .
+git commit -m &#39;update .gitignore&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;git commit -a -m &amp;ldquo;xxx&amp;rdquo; // without git add&lt;/p&gt;
+&lt;h1 id=&#34;github:1c1ef82aae62aeea8eedcb5f455b129b&#34;&gt;Github&lt;/h1&gt;
 
-&lt;pre&gt;&lt;code&gt;
-* Revert
-&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Generate SSH key&lt;/p&gt;
 
-&lt;p&gt;git reflog //review commit id for revert
-git reset &amp;ndash;hard xxx //commit id or HEAD^ (the next version), HEAD^^ (the next next version)
-git checkout &amp;ndash; filename //revert when there is no local change &lt;strong&gt;added&lt;/strong&gt;
-git reset HEAD filename &amp;amp;&amp;amp; git checkout &amp;ndash; filename //revert &lt;strong&gt;added&lt;/strong&gt; change, then revert local change&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa -C&amp;quot;mail&amp;quot; //id_rsa and id_rsa.pub
+ssh -T github.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;pre&gt;&lt;code&gt;
-* Change
-&lt;/code&gt;&lt;/pre&gt;
+&lt;li&gt;&lt;p&gt;.ssh/config&lt;/p&gt;
 
-&lt;p&gt;git rm xxx
-git rm &amp;ndash;cache xxx // remove tracked file, but keep it locally
-git rm -f xxx // remove file physically.
-git mv xxx yyy&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-* Branch
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;git checkout -b xxx // git branch xxx &amp;amp;&amp;amp; git checkout xxx
-git merge xxx
-git branch -d xxx //delete branch&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-* gitignore when it doesn&#39;t work:
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;git rm -r &amp;ndash;cached .
-git add .
-git commit -m &amp;lsquo;update .gitignore&amp;rsquo;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-# Github
-* Generate SSH key
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;ssh-keygen -t rsa -C&amp;rdquo;mail&amp;rdquo; //id_rsa and id_rsa.pub
-ssh -T github.com&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-* .ssh/config
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Host github.com
+&lt;pre&gt;&lt;code&gt;Host github.com
 User git
 Hostname ssh.github.com
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
-Port 443&lt;/p&gt;
+Port 443
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;pre&gt;&lt;code&gt;
-* Upload
-&lt;/code&gt;&lt;/pre&gt;
+&lt;li&gt;&lt;p&gt;Upload&lt;/p&gt;
 
-&lt;p&gt;git remote add origin git@github.com:sevenbamboos/test.git
+&lt;pre&gt;&lt;code&gt;git remote add origin git@github.com:sevenbamboos/test.git
 git push origin master
 git pull origin master
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
