@@ -5,34 +5,32 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Git  &middot; sevenbamboos&#39;s blog</title>
+  <title>How to build personal blog via Github Pages  &middot; sevenbamboos&#39;s blog</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<meta name="description" content="git commands memo" />
+<meta name="description" content="publish static web pages on Github" />
 
-<meta name="keywords" content="programming, version control, ">
+<meta name="keywords" content="git-hub, ">
 
 
-<meta property="og:title" content="Git  &middot; sevenbamboos&#39;s blog ">
+<meta property="og:title" content="How to build personal blog via Github Pages  &middot; sevenbamboos&#39;s blog ">
 <meta property="og:site_name" content="sevenbamboos&#39;s blog"/>
-<meta property="og:url" content="http://sevenbamboos.github.io/blog-site/2016/06/01/git/" />
+<meta property="og:url" content="http://sevenbamboos.github.io/blog-site/2016/06/01/how-to-build-personal-blog-via-github-pages/" />
 <meta property="og:locale" content="en-us">
 
 
 <meta property="og:type" content="article" />
-<meta property="og:description" content="git commands memo"/>
-<meta property="og:article:published_time" content="2016-06-01T14:22:09&#43;08:00" />
-<meta property="og:article:modified_time" content="2016-06-01T14:22:09&#43;08:00" />
+<meta property="og:description" content="publish static web pages on Github"/>
+<meta property="og:article:published_time" content="2016-06-01T16:05:27&#43;08:00" />
+<meta property="og:article:modified_time" content="2016-06-01T16:05:27&#43;08:00" />
 
   
     
-<meta property="og:article:tag" content="programming">
-    
-<meta property="og:article:tag" content="version control">
+<meta property="og:article:tag" content="git-hub">
     
   
 
@@ -40,9 +38,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
-<meta name="twitter:title" content="Git" />
-<meta name="twitter:description" content="git commands memo" />
-<meta name="twitter:url" content="http://sevenbamboos.github.io/blog-site/2016/06/01/git/" />
+<meta name="twitter:title" content="How to build personal blog via Github Pages" />
+<meta name="twitter:description" content="publish static web pages on Github" />
+<meta name="twitter:url" content="http://sevenbamboos.github.io/blog-site/2016/06/01/how-to-build-personal-blog-via-github-pages/" />
 <meta name="twitter:domain" content="http://sevenbamboos.github.io/blog-site">
   
 
@@ -50,20 +48,20 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "Git",
+    "headline": "How to build personal blog via Github Pages",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
     "datePublished": "2016-06-01",
-    "description": "git commands memo",
-    "wordCount":  218 
+    "description": "publish static web pages on Github",
+    "wordCount":  307 
   }
 </script>
 
 
 
-<link rel="canonical" href="http://sevenbamboos.github.io/blog-site/2016/06/01/git/" />
+<link rel="canonical" href="http://sevenbamboos.github.io/blog-site/2016/06/01/how-to-build-personal-blog-via-github-pages/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://sevenbamboos.github.io/blog-site/touch-icon-144-precomposed.png">
 <link href="http://sevenbamboos.github.io/blog-site/favicon.png" rel="icon">
@@ -154,7 +152,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
   <div class="text-center">
 
-    <h1>Git
+    <h1>How to build personal blog via Github Pages
 </h1>
 
     <div class="metas">
@@ -168,16 +166,14 @@
     &middot; by YuPing Wang
   
   &middot; Read in about 2 min
-  &middot; (218 Words)
+  &middot; (307 Words)
 </small>
 
 
 <div class="margin-10">
   <i class="fa fa-tags"></i>
   
-  <a href="http://sevenbamboos.github.io/blog-site/tags/programming" class="label label-primary">programming</a>
-  
-  <a href="http://sevenbamboos.github.io/blog-site/tags/version-control" class="label label-primary">version control</a>
+  <a href="http://sevenbamboos.github.io/blog-site/tags/git-hub" class="label label-primary">git-hub</a>
   
 
 
@@ -191,88 +187,62 @@
       <div class="content">
   
 
-<h1 id="git:1c1ef82aae62aeea8eedcb5f455b129b">Git</h1>
+<h1 id="config-hugo:3d7aab9f4bb9f5bcbc089980f699e2e5">Config Hugo</h1>
 
-<ul>
-<li>reference <a href="http://www.jianshu.com/p/6d1ce5b65523">http://www.jianshu.com/p/6d1ce5b65523</a> and <a href="http://learngitbranching.js.org/?demo">http://learngitbranching.js.org/?demo</a></li>
-<li>Install <a href="http://cmder.net/">http://cmder.net/</a> (including MsysGit)</li>
+<p><a href="https://gohugo.io/">Hugo</a>
+The configuration is straightforward and it lets you focus on the contents instead of web pages&rsquo; style. It&rsquo;s worth noting to include the following in config.toml:</p>
 
-<li><p>Config</p>
+<pre><code>baseurl = &quot;http://xxx.github.io/yyy&quot;
+publishdir = &quot;public&quot;
+canonifyurls = true // ensure css can be loaded
+</code></pre>
 
-<pre><code>git config --global user.name &quot;xxx&quot; 
-git config --global user.email &quot;xxx@yyy&quot;
-git config --global alias.st status
-git config --global alias.co checkout
-git config --global alias.ci commit
-git config --global alias.br branch
-git config --list //~\.gitconfig
-</code></pre></li>
+<h1 id="choose-a-theme:3d7aab9f4bb9f5bcbc089980f699e2e5">Choose a theme</h1>
 
-<li><p>Check in</p>
+<p>Without a theme, hugo won&rsquo;t show anything but a blank page, which is definitely not welcome for novice. You can get a basic idea about what available themes look like from <a href="http://themes.gohugo.io/"><strong>here</strong></a>. Then choose one from the <a href="https://github.com/spf13/hugoThemes"><strong>list</strong></a> and execute the following commands:</p>
 
-<pre><code>git init
-git status
+<pre><code>mkdir themes
+cd themes
+git clone git@github.com:mmrath/hugo-bootstrap.git // change the theme name if necessary
+</code></pre>
+
+<p>And don&rsquo;t forget to add the theme name to config file to save some time of typing later on:</p>
+
+<pre><code>theme = &quot;hugo-bootstrap&quot;
+</code></pre>
+
+<p>[<strong>TODO</strong>] add more information for theme customization</p>
+
+<h1 id="local-testing:3d7aab9f4bb9f5bcbc089980f699e2e5">Local testing</h1>
+
+<p>The next step is to add contents by:</p>
+
+<pre><code>hugo new post/new-blog-item.md
+hugo server -wD // including draft during the content generating
+</code></pre>
+
+<p>Once satisfied with the result, you can mark the file as non-draft and generate the content by:</p>
+
+<pre><code>hugo // it's such a compact command without any unnecessary parameter
+</code></pre>
+
+<h1 id="push-to-github-pages:3d7aab9f4bb9f5bcbc089980f699e2e5">Push to Github Pages</h1>
+
+<p>Now the final step is to publish it to Github, which requires us to put the pages in a repository&rsquo;s &ldquo;gh-pages&rdquo; branch. A very easy way for git novice is to create a separate repository specific for the generated web pages (of course, we have to create gh-pages branch as well). I suggest to use the follow strategy:</p>
+
+<pre><code>cd hugo_content_folder/public
+git init
 git add .
-git commit -m &quot;xxx&quot;
-</code></pre></li>
-
-<li><p>Revert</p>
-
-<pre><code>git reflog //review commit id for revert
-git reset --hard xxx //commit id or HEAD^ (the next version), HEAD^^ (the next next version)
-git checkout -- filename //revert when there is no local change **added**
-git reset HEAD filename &amp;&amp; git checkout -- filename //revert **added** change, then revert local change
-</code></pre></li>
-
-<li><p>Change</p>
-
-<pre><code>git rm xxx
-git rm --cache xxx // remove tracked file, but keep it locally
-git rm -f xxx // remove file physically.
-git mv xxx yyy
-</code></pre></li>
-
-<li><p>Branch</p>
-
-<pre><code>git checkout -b xxx // git branch xxx &amp;&amp; git checkout xxx
-git merge xxx
-git branch -d xxx //delete branch
-</code></pre></li>
-
-<li><p>gitignore when it doesn&rsquo;t work:</p>
-
-<pre><code>git rm -r --cached .
-git add .
-git commit -m 'update .gitignore'
-</code></pre></li>
-</ul>
-
-<h1 id="github:1c1ef82aae62aeea8eedcb5f455b129b">Github</h1>
-
-<ul>
-<li><p>Generate SSH key</p>
-
-<pre><code>ssh-keygen -t rsa -C&quot;mail&quot; //id_rsa and id_rsa.pub
-ssh -T github.com
-</code></pre></li>
-
-<li><p>.ssh/config</p>
-
-<pre><code>Host github.com
-User git
-Hostname ssh.github.com
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa
-Port 443
-</code></pre></li>
-
-<li><p>Upload</p>
-
-<pre><code>git remote add origin git@github.com:sevenbamboos/test.git
+git ci -m &quot;comments xxx&quot;
+git remote add origin git@github.com:xxx/yyy.git
 git push origin master
-git pull origin master
-</code></pre></li>
-</ul>
+git co --orphan gh-pages
+git add .
+git ci -m &quot;comments yyy&quot;
+git push origin gh-pages
+</code></pre>
+
+<p>[<strong>XXX</strong>] How to simplify the preceding commands? When following the Hugo&rsquo;s official document withe &ldquo;git subtree&rdquo; stuff, there is non-fast-forward error in my console!</p>
 
 </div>
 
@@ -283,13 +253,13 @@ git pull origin master
   
     <nav><ul class="pager">
     
-
+        <li class="previous">
+          <a href="http://sevenbamboos.github.io/blog-site/2016/06/01/git/" title="Git">
+            <span aria-hidden="true">&larr;</span>Previous
+          </a>
+        </li>
     
-      <li class="next">
-        <a href="http://sevenbamboos.github.io/blog-site/2016/06/01/how-to-build-personal-blog-via-github-pages/" title="How to build personal blog via Github Pages">
-            Next <span aria-hidden="true">&rarr;</span>
-        </a>
-      </li>
+
     
     </ul> </nav>
   

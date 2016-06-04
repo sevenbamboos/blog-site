@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Version Control on sevenbamboos&#39;s blog</title>
-    <link>http://sevenbamboos.github.io/blog/tags/version-control/</link>
+    <link>http://sevenbamboos.github.io/blog-site/tags/version-control/</link>
     <description>Recent content in Version Control on sevenbamboos&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -10,14 +10,14 @@
     <webMaster>sevenbamboos@gmail.com, 13472650881@163.com (YuPing Wang)</webMaster>
     <copyright>(c) 2016 YuPing Wang.</copyright>
     <lastBuildDate>Wed, 01 Jun 2016 14:22:09 +0800</lastBuildDate>
-    <atom:link href="http://sevenbamboos.github.io/blog/tags/version-control/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://sevenbamboos.github.io/blog-site/tags/version-control/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Git</title>
-      <link>http://sevenbamboos.github.io/blog/2016/06/01/git/</link>
+      <link>http://sevenbamboos.github.io/blog-site/2016/06/01/git/</link>
       <pubDate>Wed, 01 Jun 2016 14:22:09 +0800</pubDate>
       <author>sevenbamboos@gmail.com, 13472650881@163.com (YuPing Wang)</author>
-      <guid>http://sevenbamboos.github.io/blog/2016/06/01/git/</guid>
+      <guid>http://sevenbamboos.github.io/blog-site/2016/06/01/git/</guid>
       <description>
 
 &lt;h1 id=&#34;git:1c1ef82aae62aeea8eedcb5f455b129b&#34;&gt;Git&lt;/h1&gt;
@@ -56,6 +56,8 @@ git reset HEAD filename &amp;amp;&amp;amp; git checkout -- filename //revert **a
 &lt;li&gt;&lt;p&gt;Change&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;git rm xxx
+git rm --cache xxx // remove tracked file, but keep it locally
+git rm -f xxx // remove file physically.
 git mv xxx yyy
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
