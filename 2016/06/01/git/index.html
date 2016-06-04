@@ -57,7 +57,7 @@
     },
     "datePublished": "2016-06-01",
     "description": "git commands memo",
-    "wordCount":  218 
+    "wordCount":  237 
   }
 </script>
 
@@ -168,7 +168,7 @@
     &middot; by YuPing Wang
   
   &middot; Read in about 2 min
-  &middot; (218 Words)
+  &middot; (237 Words)
 </small>
 
 
@@ -208,71 +208,77 @@ git config --global alias.br branch
 git config --list //~\.gitconfig
 </code></pre></li>
 
-<li><p>Check in</p>
-
-<pre><code>git init
+<li><p>Check in
+```
+git init
 git status
 git add .
-git commit -m &quot;xxx&quot;
-</code></pre></li>
-
-<li><p>Revert</p>
-
-<pre><code>git reflog //review commit id for revert
-git reset --hard xxx //commit id or HEAD^ (the next version), HEAD^^ (the next next version)
-git checkout -- filename //revert when there is no local change **added**
-git reset HEAD filename &amp;&amp; git checkout -- filename //revert **added** change, then revert local change
-</code></pre></li>
-
-<li><p>Change</p>
-
-<pre><code>git rm xxx
-git rm --cache xxx // remove tracked file, but keep it locally
-git rm -f xxx // remove file physically.
-git mv xxx yyy
-</code></pre></li>
-
-<li><p>Branch</p>
-
-<pre><code>git checkout -b xxx // git branch xxx &amp;&amp; git checkout xxx
-git merge xxx
-git branch -d xxx //delete branch
-</code></pre></li>
-
-<li><p>gitignore when it doesn&rsquo;t work:</p>
-
-<pre><code>git rm -r --cached .
-git add .
-git commit -m 'update .gitignore'
-</code></pre></li>
+git commit -m &ldquo;xxx&rdquo;</p></li>
 </ul>
 
-<h1 id="github:1c1ef82aae62aeea8eedcb5f455b129b">Github</h1>
+<p>git commit -a -m &ldquo;xxx&rdquo; // without git add</p>
 
-<ul>
-<li><p>Generate SSH key</p>
+<pre><code>
+* Revert
+</code></pre>
 
-<pre><code>ssh-keygen -t rsa -C&quot;mail&quot; //id_rsa and id_rsa.pub
-ssh -T github.com
-</code></pre></li>
+<p>git reflog //review commit id for revert
+git reset &ndash;hard xxx //commit id or HEAD^ (the next version), HEAD^^ (the next next version)
+git checkout &ndash; filename //revert when there is no local change <strong>added</strong>
+git reset HEAD filename &amp;&amp; git checkout &ndash; filename //revert <strong>added</strong> change, then revert local change</p>
 
-<li><p>.ssh/config</p>
+<pre><code>
+* Change
+</code></pre>
 
-<pre><code>Host github.com
+<p>git rm xxx
+git rm &ndash;cache xxx // remove tracked file, but keep it locally
+git rm -f xxx // remove file physically.
+git mv xxx yyy</p>
+
+<pre><code>
+* Branch
+</code></pre>
+
+<p>git checkout -b xxx // git branch xxx &amp;&amp; git checkout xxx
+git merge xxx
+git branch -d xxx //delete branch</p>
+
+<pre><code>
+* gitignore when it doesn't work:
+</code></pre>
+
+<p>git rm -r &ndash;cached .
+git add .
+git commit -m &lsquo;update .gitignore&rsquo;</p>
+
+<pre><code>
+# Github
+* Generate SSH key
+</code></pre>
+
+<p>ssh-keygen -t rsa -C&rdquo;mail&rdquo; //id_rsa and id_rsa.pub
+ssh -T github.com</p>
+
+<pre><code>
+* .ssh/config
+</code></pre>
+
+<p>Host github.com
 User git
 Hostname ssh.github.com
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
-Port 443
-</code></pre></li>
+Port 443</p>
 
-<li><p>Upload</p>
+<pre><code>
+* Upload
+</code></pre>
 
-<pre><code>git remote add origin git@github.com:sevenbamboos/test.git
+<p>git remote add origin git@github.com:sevenbamboos/test.git
 git push origin master
 git pull origin master
-</code></pre></li>
-</ul>
+```</p>
 
 </div>
 
