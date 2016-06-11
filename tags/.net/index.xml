@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on sevenbamboos&#39;s blog</title>
-    <link>http://sevenbamboos.github.io/blog-site/post/</link>
-    <description>Recent content in Posts on sevenbamboos&#39;s blog</description>
+    <title>.Net on sevenbamboos&#39;s blog</title>
+    <link>http://sevenbamboos.github.io/blog-site/tags/index.net/</link>
+    <description>Recent content in .Net on sevenbamboos&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>sevenbamboos@gmail.com, 13472650881@163.com (YuPing Wang)</managingEditor>
     <webMaster>sevenbamboos@gmail.com, 13472650881@163.com (YuPing Wang)</webMaster>
     <copyright>(c) 2016 YuPing Wang.</copyright>
     <lastBuildDate>Thu, 09 Jun 2016 15:53:39 +0800</lastBuildDate>
-    <atom:link href="http://sevenbamboos.github.io/blog-site/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://sevenbamboos.github.io/blog-site/tags/.net/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Code First in Entity framework</title>
@@ -298,167 +298,6 @@ modelBuilder.Entity&amp;lt;AuctionItem&amp;gt;()
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The CRUD operations in EF will be included in the other articles.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>How to build personal blog via Github Pages</title>
-      <link>http://sevenbamboos.github.io/blog-site/2016/06/01/how-to-build-personal-blog-via-github-pages/</link>
-      <pubDate>Wed, 01 Jun 2016 16:05:27 +0800</pubDate>
-      <author>sevenbamboos@gmail.com, 13472650881@163.com (YuPing Wang)</author>
-      <guid>http://sevenbamboos.github.io/blog-site/2016/06/01/how-to-build-personal-blog-via-github-pages/</guid>
-      <description>
-
-&lt;h1 id=&#34;config-hugo:3d7aab9f4bb9f5bcbc089980f699e2e5&#34;&gt;Config Hugo&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;
-The configuration is straightforward and it lets you focus on the contents instead of web pages&amp;rsquo; style. It&amp;rsquo;s worth noting to include the following in config.toml:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;baseurl = &amp;quot;http://xxx.github.io/yyy&amp;quot;
-publishdir = &amp;quot;public&amp;quot;
-canonifyurls = true // ensure css can be loaded
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;choose-a-theme:3d7aab9f4bb9f5bcbc089980f699e2e5&#34;&gt;Choose a theme&lt;/h1&gt;
-
-&lt;p&gt;Without a theme, hugo won&amp;rsquo;t show anything but a blank page, which is definitely not welcome for novice. You can get a basic idea about what available themes look like from &lt;a href=&#34;http://themes.gohugo.io/&#34;&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;. Then choose one from the &lt;a href=&#34;https://github.com/spf13/hugoThemes&#34;&gt;&lt;strong&gt;list&lt;/strong&gt;&lt;/a&gt; and execute the following commands:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mkdir themes
-cd themes
-git clone git@github.com:mmrath/hugo-bootstrap.git // change the theme name if necessary
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And don&amp;rsquo;t forget to add the theme name to config file to save some time of typing later on:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;theme = &amp;quot;hugo-bootstrap&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;[&lt;strong&gt;TODO&lt;/strong&gt;] add more information for theme customization&lt;/p&gt;
-
-&lt;h1 id=&#34;local-testing:3d7aab9f4bb9f5bcbc089980f699e2e5&#34;&gt;Local testing&lt;/h1&gt;
-
-&lt;p&gt;The next step is to add contents by:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new post/new-blog-item.md
-hugo server -wD // including draft during the content generating
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once satisfied with the result, you can mark the file as non-draft and generate the content by:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo // it&#39;s such a compact command without any unnecessary parameter
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;push-to-github-pages:3d7aab9f4bb9f5bcbc089980f699e2e5&#34;&gt;Push to Github Pages&lt;/h1&gt;
-
-&lt;p&gt;Now the final step is to publish it to Github, which requires us to put the pages in a repository&amp;rsquo;s &amp;ldquo;gh-pages&amp;rdquo; branch. A very easy way for git novice is to create a separate repository specific for the generated web pages (of course, we have to create gh-pages branch as well). I suggest to use the follow strategy:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd hugo_content_folder/public
-git init
-git add .
-git ci -m &amp;quot;comments xxx&amp;quot;
-git remote add origin git@github.com:xxx/yyy.git
-git push origin master
-git co --orphan gh-pages
-git add .
-git ci -m &amp;quot;comments yyy&amp;quot;
-git push origin gh-pages
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;[&lt;strong&gt;XXX&lt;/strong&gt;] How to simplify the preceding commands? When following the Hugo&amp;rsquo;s official document withe &amp;ldquo;git subtree&amp;rdquo; stuff, there is non-fast-forward error in my console!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>http://sevenbamboos.github.io/blog-site/2016/06/01/git/</link>
-      <pubDate>Wed, 01 Jun 2016 14:22:09 +0800</pubDate>
-      <author>sevenbamboos@gmail.com, 13472650881@163.com (YuPing Wang)</author>
-      <guid>http://sevenbamboos.github.io/blog-site/2016/06/01/git/</guid>
-      <description>
-
-&lt;h1 id=&#34;git:1c1ef82aae62aeea8eedcb5f455b129b&#34;&gt;Git&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;reference &lt;a href=&#34;http://www.jianshu.com/p/6d1ce5b65523&#34;&gt;http://www.jianshu.com/p/6d1ce5b65523&lt;/a&gt; and &lt;a href=&#34;http://learngitbranching.js.org/?demo&#34;&gt;http://learngitbranching.js.org/?demo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Install &lt;a href=&#34;http://cmder.net/&#34;&gt;http://cmder.net/&lt;/a&gt; (including MsysGit)&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Config&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;xxx&amp;quot; 
-git config --global user.email &amp;quot;xxx@yyy&amp;quot;
-git config --global alias.st status
-git config --global alias.co checkout
-git config --global alias.ci commit
-git config --global alias.br branch
-git config --list //~\.gitconfig
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Check in&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git init
-git status
-git add .
-git commit -m &amp;quot;xxx&amp;quot;
-git commit -a -m &amp;quot;xxx&amp;quot; // without git add
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Revert&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git reflog //review commit id for revert
-git reset --hard xxx //commit id or HEAD^ (the next version), HEAD^^ (the next next version)
-git checkout -- filename //revert when there is no local change **added**
-git reset HEAD filename &amp;amp;&amp;amp; git checkout -- filename //revert **added** change, then revert local change
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Change&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git rm xxx
-git rm --cache xxx // remove tracked file, but keep it locally
-git rm -f xxx // remove file physically.
-git mv xxx yyy
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Branch&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git checkout -b xxx // git branch xxx &amp;amp;&amp;amp; git checkout xxx
-git merge xxx
-git branch -d xxx //delete branch
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;gitignore when it doesn&amp;rsquo;t work:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git rm -r --cached .
-git add .
-git commit -m &#39;update .gitignore&#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;github:1c1ef82aae62aeea8eedcb5f455b129b&#34;&gt;Github&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Generate SSH key&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ssh-keygen -t rsa -C&amp;quot;mail&amp;quot; //id_rsa and id_rsa.pub
-ssh -T github.com
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;.ssh/config&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Host github.com
-User git
-Hostname ssh.github.com
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_rsa
-Port 443
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Upload&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git remote add origin git@github.com:sevenbamboos/test.git
-git push origin master
-git pull origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
