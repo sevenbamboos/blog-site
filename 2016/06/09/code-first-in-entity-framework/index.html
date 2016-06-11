@@ -366,7 +366,10 @@ modelBuilder.Entity&lt;Study&gt;()
 
 </code></pre>
 
-<p>Notice that for required navigating property, the generated foreign keys will be marked as <strong>ON DELETE CASCADE</strong>. Also notice that during saving a study to an order, both of the following ways is working:</p>
+<p>Notice that for required navigating property, the generated foreign keys will be marked as <strong>ON DELETE CASCADE</strong>:
+<img src="http://sevenbamboos.github.io/blog-site/post/img/table-study.png" alt="table-study" /></p>
+
+<p>Also notice that during saving a study to an order, both of the following ways is working:</p>
 
 <pre><code>study.Order = anOrder;
 // anOrder.Studies.Add(study)
@@ -538,7 +541,7 @@ modelBuilder.Entity&lt;AuctionItem&gt;()
 
         <div class="content">
           <ul>
-            <li><a href="http://sevenbamboos.github.io/blog-sitetags/programming">programming</a></li><li><a href="http://sevenbamboos.github.io/blog-sitetags/.net">.net</a></li><li><a href="http://sevenbamboos.github.io/blog-sitetags/git-hub">git-hub</a></li><li><a href="http://sevenbamboos.github.io/blog-sitetags/version-control">version-control</a></li>
+            <li><a href="http://sevenbamboos.github.io/blog-sitetags/version-control">version-control</a></li><li><a href="http://sevenbamboos.github.io/blog-sitetags/programming">programming</a></li><li><a href="http://sevenbamboos.github.io/blog-sitetags/.net">.net</a></li><li><a href="http://sevenbamboos.github.io/blog-sitetags/git-hub">git-hub</a></li>
           </ul>
         </div>
       </div>

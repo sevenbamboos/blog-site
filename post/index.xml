@@ -195,7 +195,10 @@ modelBuilder.Entity&amp;lt;Study&amp;gt;()
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Notice that for required navigating property, the generated foreign keys will be marked as &lt;strong&gt;ON DELETE CASCADE&lt;/strong&gt;. Also notice that during saving a study to an order, both of the following ways is working:&lt;/p&gt;
+&lt;p&gt;Notice that for required navigating property, the generated foreign keys will be marked as &lt;strong&gt;ON DELETE CASCADE&lt;/strong&gt;:
+&lt;img src=&#34;http://sevenbamboos.github.io/blog-site/post/img/table-study.png&#34; alt=&#34;table-study&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Also notice that during saving a study to an order, both of the following ways is working:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;study.Order = anOrder;
 // anOrder.Studies.Add(study)
