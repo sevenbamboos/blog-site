@@ -213,29 +213,29 @@
 <p>I&rsquo;ll illustrate this relationship with a wildly-used user&amp;role model.</p>
 
 <pre><code>public class Role {
-	// EF is able to recognize two kinds of naming conversions: TypeID or ID
-	// Personally, I prefer the former except for the case of inheritance
-	public int RoleID { get; set; }
+    // EF is able to recognize two kinds of naming conversions: TypeID or ID
+    // Personally, I prefer the former except for the case of inheritance
+    public int RoleID { get; set; }
 
-	[Required]
-	public string Name { get; set; }
+    [Required]
+    public string Name { get; set; }
 
-	// easy way to give an initialized value
-	public bool Active { get; set; } = true; 
+    // easy way to give an initialized value
+    public bool Active { get; set; } = true; 
 }
 
 public class User {
-	public int UserID { get; set; }
+    public int UserID { get; set; }
 
-	[Required]
-	public string Name { get; set; }
-	
-	// EF can understand normal value object as long as it has no identity	
-	public Address Address { get; set; } = new Address();
+    [Required]
+    public string Name { get; set; }
+    
+    // EF can understand normal value object as long as it has no identity  
+    public Address Address { get; set; } = new Address();
 
-	// Make it virtual so that EF can implement logic such as lazy-loading under the hood
-	// Also don't forget to initialize it before using (otherwise null pointer exception is waiting for you)
-	public virtual ICollection&lt;Role&gt; Roles { get; set; } = new HashSet&lt;Role&gt;();
+    // Make it virtual so that EF can implement logic such as lazy-loading under the hood
+    // Also don't forget to initialize it before using (otherwise null pointer exception is waiting for you)
+    public virtual ICollection&lt;Role&gt; Roles { get; set; } = new HashSet&lt;Role&gt;();
 }
 </code></pre>
 
@@ -247,30 +247,30 @@ modelBuilder.Entity&lt;Role&gt;().ToTable(&quot;AppRole&quot;, &quot;EFSample&qu
 // many-to-many with one direction
 // There is no link from role to user, so in this case we only need to configurate the user side
 modelBuilder.Entity&lt;User&gt;().ToTable(&quot;AppUser&quot;, &quot;EFSample&quot;)
-	.HasMany(u =&gt; u.Roles)
-	.WithMany()
-	.Map(m =&gt;
-	{
-		m.MapLeftKey(&quot;UserID&quot;);
-		m.MapRightKey(&quot;RoleID&quot;);
-		m.ToTable(&quot;User_Role&quot;, &quot;EFSample&quot;);
-	});
+    .HasMany(u =&gt; u.Roles)
+    .WithMany()
+    .Map(m =&gt;
+    {
+        m.MapLeftKey(&quot;UserID&quot;);
+        m.MapRightKey(&quot;RoleID&quot;);
+        m.ToTable(&quot;User_Role&quot;, &quot;EFSample&quot;);
+    });
 </code></pre>
 
 <p>Suppose we need to loop through all users to find roles for each of them:</p>
 
 <pre><code>using (var ctx = new EFSampleContext()) {
-	foreach (var user in ctx.Users.OrderBy(u =&gt; u.UserID)) {
+    foreach (var user in ctx.Users.OrderBy(u =&gt; u.UserID)) {
 
-		// It would load each user's role, which is lazy-loaded by default
-		//ctx.Entry&lt;User&gt;(user).Collection&lt;Role&gt;(u =&gt; u.Roles).Load();
+        // It would load each user's role, which is lazy-loaded by default
+        //ctx.Entry&lt;User&gt;(user).Collection&lt;Role&gt;(u =&gt; u.Roles).Load();
 
-		// But since we are inside the lifetime of DbContext, just using the navigating property (Roles) directly can work
-		// And this is where property &quot;MultipleActiveResultSets&quot; must be true
-		foreach (var role in user.Roles) {
-			Console.WriteLine($&quot;{user.Name} has role: {role.Name}&quot;);
-		}
-	}
+        // But since we are inside the lifetime of DbContext, just using the navigating property (Roles) directly can work
+        // And this is where property &quot;MultipleActiveResultSets&quot; must be true
+        foreach (var role in user.Roles) {
+            Console.WriteLine($&quot;{user.Name} has role: {role.Name}&quot;);
+        }
+    }
 
 }
 </code></pre>
@@ -278,10 +278,10 @@ modelBuilder.Entity&lt;User&gt;().ToTable(&quot;AppUser&quot;, &quot;EFSample&qu
 <p>Suppose we need to query users who have a specific role, then:</p>
 
 <pre><code>using (var ctx = new EFSampleContext()) {
-	var results = from u in ctx.Users
-		from r in u.Roles
-		where r.Name == &quot;role 1&quot;
-		select u;
+    var results = from u in ctx.Users
+        from r in u.Roles
+        where r.Name == &quot;role 1&quot;
+        select u;
 }
 </code></pre>
 
@@ -292,56 +292,56 @@ The one-to-many relationship here is an order can contain multiple studies, whil
 
 <pre><code>public class Patient
 {
-	public int PatientID { get; set; }
+    public int PatientID { get; set; }
 
-	// I find required annotation is acceptable and more readable to be put in model
-	// By contrast, the relationships (navigating properties) are better to put somewhere outside model
-	[Required]
-	public string Name { get; set; }
+    // I find required annotation is acceptable and more readable to be put in model
+    // By contrast, the relationships (navigating properties) are better to put somewhere outside model
+    [Required]
+    public string Name { get; set; }
 
-	// DateTime is struct. That's how to set it as optional
-	public DateTime? DateOfBirth { get; set; }
+    // DateTime is struct. That's how to set it as optional
+    public DateTime? DateOfBirth { get; set; }
 
-	// EF has no problem to recognize enum
-	public Gender? Gender { get; set; }
+    // EF has no problem to recognize enum
+    public Gender? Gender { get; set; }
 
-	// For computable properties, use NotMapped to make EF skip processing them
-	[NotMapped]
-	public int? Age {
-		get {
-			TimeSpan? span = DateTime.Now - DateOfBirth;
-			if (span.HasValue) {
-				return (int)Math.Ceiling(span.Value.Days / 365m);
-			} else {
-				return null;
-			}
-		}
+    // For computable properties, use NotMapped to make EF skip processing them
+    [NotMapped]
+    public int? Age {
+        get {
+            TimeSpan? span = DateTime.Now - DateOfBirth;
+            if (span.HasValue) {
+                return (int)Math.Ceiling(span.Value.Days / 365m);
+            } else {
+                return null;
+            }
+        }
 
-		private set { }
-	}
+        private set { }
+    }
 }
 
 public class Study {
-	public int StudyID { get; set; }
+    public int StudyID { get; set; }
 
-	[Required]
-	public string StudyUID { get; set; }
+    [Required]
+    public string StudyUID { get; set; }
 
-	[Required]
-	public string Name { get; set; }
+    [Required]
+    public string Name { get; set; }
 
-	public DateTime? ScheduleTime { get; set; }
-	public virtual Patient Patient { get; set; }
-	public virtual Order Order { get; set; }
+    public DateTime? ScheduleTime { get; set; }
+    public virtual Patient Patient { get; set; }
+    public virtual Order Order { get; set; }
 }
 
 public class Order {
-	public int OrderID { get; set; }
+    public int OrderID { get; set; }
 
-	[Required]
-	public string AccessionNumber { get; set; }
+    [Required]
+    public string AccessionNumber { get; set; }
 
-	public virtual ICollection&lt;Study&gt; Studies { get; set; } = new HashSet&lt;Study&gt;();
+    public virtual ICollection&lt;Study&gt; Studies { get; set; } = new HashSet&lt;Study&gt;();
 }
 
 </code></pre>
@@ -354,15 +354,15 @@ modelBuilder.Entity&lt;Study&gt;().ToTable(&quot;Study&quot;, &quot;EFSample&quo
 
 // one-to-many with two directions
 modelBuilder.Entity&lt;Order&gt;().ToTable(&quot;RisOrder&quot;, &quot;EFSample&quot;)
-	.HasMany(o =&gt; o.Studies)
-	.WithOptional(s =&gt; s.Order)	// a study can have no order at all
-	.Map(m =&gt; m.MapKey(&quot;OrderID&quot;)); // Name a nicer foreign key, by default, it is NavigatingPropertyName_TargetTypeID
+    .HasMany(o =&gt; o.Studies)
+    .WithOptional(s =&gt; s.Order) // a study can have no order at all
+    .Map(m =&gt; m.MapKey(&quot;OrderID&quot;)); // Name a nicer foreign key, by default, it is NavigatingPropertyName_TargetTypeID
 
 // many-to-one with one direction
 modelBuilder.Entity&lt;Study&gt;()
-	.HasRequired(s =&gt; s.Patient) // a study must belong to a patient
-	.WithMany()
-	.Map(m =&gt; m.MapKey(&quot;PatientID&quot;));
+    .HasRequired(s =&gt; s.Patient) // a study must belong to a patient
+    .WithMany()
+    .Map(m =&gt; m.MapKey(&quot;PatientID&quot;));
 
 </code></pre>
 
@@ -379,21 +379,21 @@ modelBuilder.Entity&lt;Study&gt;()
 
 <pre><code>using (var ctx = new EFSampleContext()) {
 
-	// Query male patients
-	var malePatients = from p in ctx.Patients
-		where p.Gender == Gender.Male
-		select p;
-	foreach (var patient in malePatients) {
-		Console.WriteLine($&quot;{patient.Name}&quot;);
-	}
+    // Query male patients
+    var malePatients = from p in ctx.Patients
+        where p.Gender == Gender.Male
+        select p;
+    foreach (var patient in malePatients) {
+        Console.WriteLine($&quot;{patient.Name}&quot;);
+    }
 
-	// Loop orders and visit study and patient properties
-	foreach (var o in ctx.Orders) {
-		Console.WriteLine($&quot;Order:{o.AccessionNumber}&quot;);
-		foreach (var s in o.Studies) {
-			Console.WriteLine($&quot;Study:{s.Name}, Patient:{s.Patient.Name} Gender({s.Patient.Gender}) Age={s.Patient.Age ?? 0}&quot;);
-		}
-	}
+    // Loop orders and visit study and patient properties
+    foreach (var o in ctx.Orders) {
+        Console.WriteLine($&quot;Order:{o.AccessionNumber}&quot;);
+        foreach (var s in o.Studies) {
+            Console.WriteLine($&quot;Study:{s.Name}, Patient:{s.Patient.Name} Gender({s.Patient.Gender}) Age={s.Patient.Age ?? 0}&quot;);
+        }
+    }
 }
 </code></pre>
 
@@ -404,71 +404,71 @@ Goods is an abstract class which can be represented by a series of concrete clas
 AuctionItem is a model having links to user and goods, which is included here for the completeness of auction model</p>
 
 <pre><code>public class Category {
-	public int CategoryID { get; set; }
-	public string Name { get; set; }
+    public int CategoryID { get; set; }
+    public string Name { get; set; }
 
-	public virtual Category Parent { get; set; }
-	public virtual ICollection&lt;Category&gt; SubCategories { get; set; } = new HashSet&lt;Category&gt;();
+    public virtual Category Parent { get; set; }
+    public virtual ICollection&lt;Category&gt; SubCategories { get; set; } = new HashSet&lt;Category&gt;();
 }
 
 public abstract class Goods {
-	public int GoodsID { get; set; }
-	public string Name { get; set; }
+    public int GoodsID { get; set; }
+    public string Name { get; set; }
 
-	public virtual Category Category { get; set; }
+    public virtual Category Category { get; set; }
 }
 
 public class Vehicle : Goods {
-	public string Manufacturer { get; set; }
-	public string Model { get; set; }
-	public int? Mileage { get; set; }
+    public string Manufacturer { get; set; }
+    public string Model { get; set; }
+    public int? Mileage { get; set; }
 }
 
 public class Artwork : Goods {
-	public string Author { get; set; }
-	public string Genre { get; set; }
+    public string Author { get; set; }
+    public string Genre { get; set; }
 }
 
 public class Estate : Goods {
-	public Address Address { get; set; } = new Address();
-	public decimal? Area { get; set; }
-	public DateTime? BuildTime { get; set; }
+    public Address Address { get; set; } = new Address();
+    public decimal? Area { get; set; }
+    public DateTime? BuildTime { get; set; }
 }
 
 public class AuctionItem {
-	public int AuctionItemID { get; set; }
-	public decimal StartingPrice { get; set; }
-	public decimal? BargainPrice { get; set; }
-	public DateTime? BargainTime { get; set; }
+    public int AuctionItemID { get; set; }
+    public decimal StartingPrice { get; set; }
+    public decimal? BargainPrice { get; set; }
+    public DateTime? BargainTime { get; set; }
 
-	public Goods Goods { get; set; }
-	public User Bargainer { get; set; }
+    public Goods Goods { get; set; }
+    public User Bargainer { get; set; }
 }
 
 modelBuilder.Entity&lt;Category&gt;().ToTable(&quot;Category&quot;, &quot;EFSample&quot;)
-	.HasMany(c =&gt; c.SubCategories)
-	.WithOptional(c =&gt; c.Parent)
-	.Map(c =&gt; c.MapKey(&quot;ParentID&quot;));
+    .HasMany(c =&gt; c.SubCategories)
+    .WithOptional(c =&gt; c.Parent)
+    .Map(c =&gt; c.MapKey(&quot;ParentID&quot;));
 
 modelBuilder.Entity&lt;Goods&gt;().ToTable(&quot;Goods&quot;, &quot;EFSample&quot;)
-	.Map&lt;Vehicle&gt;(m =&gt; m.Requires(&quot;GoodsType&quot;).HasValue(0))
-	.Map&lt;Artwork&gt;(m =&gt; m.Requires(&quot;GoodsType&quot;).HasValue(1))
-	.Map&lt;Estate&gt;(m =&gt; m.Requires(&quot;GoodsType&quot;).HasValue(2));
+    .Map&lt;Vehicle&gt;(m =&gt; m.Requires(&quot;GoodsType&quot;).HasValue(0))
+    .Map&lt;Artwork&gt;(m =&gt; m.Requires(&quot;GoodsType&quot;).HasValue(1))
+    .Map&lt;Estate&gt;(m =&gt; m.Requires(&quot;GoodsType&quot;).HasValue(2));
 
 modelBuilder.Entity&lt;Goods&gt;()
-	.HasRequired(g =&gt; g.Category)
-	.WithMany()
-	.Map(m =&gt; m.MapKey(&quot;CategoryID&quot;));
+    .HasRequired(g =&gt; g.Category)
+    .WithMany()
+    .Map(m =&gt; m.MapKey(&quot;CategoryID&quot;));
 
 modelBuilder.Entity&lt;AuctionItem&gt;().ToTable(&quot;AuctionItem&quot;, &quot;EFSample&quot;)
-	.HasRequired(a =&gt; a.Goods)
-	.WithMany()
-	.Map(m =&gt; m.MapKey(&quot;GoodsID&quot;));
+    .HasRequired(a =&gt; a.Goods)
+    .WithMany()
+    .Map(m =&gt; m.MapKey(&quot;GoodsID&quot;));
 
 modelBuilder.Entity&lt;AuctionItem&gt;()
-	.HasRequired(a =&gt; a.Bargainer)
-	.WithMany()
-	.Map(m =&gt; m.MapKey(&quot;BargainerID&quot;));
+    .HasRequired(a =&gt; a.Bargainer)
+    .WithMany()
+    .Map(m =&gt; m.MapKey(&quot;BargainerID&quot;));
 </code></pre>
 
 <p>The CRUD operations in EF will be included in the other articles.</p>

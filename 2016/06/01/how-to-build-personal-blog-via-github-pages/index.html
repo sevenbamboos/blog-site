@@ -55,7 +55,7 @@
     },
     "datePublished": "2016-06-01",
     "description": "Publish static web pages on Github",
-    "wordCount":  307 
+    "wordCount":  361 
   }
 </script>
 
@@ -166,7 +166,7 @@
     &middot; by YuPing Wang
   
   &middot; Read in about 2 min
-  &middot; (307 Words)
+  &middot; (361 Words)
 </small>
 
 
@@ -243,6 +243,28 @@ git push origin gh-pages
 </code></pre>
 
 <p>[<strong>XXX</strong>] How to simplify the preceding commands? When following the Hugo&rsquo;s official document withe &ldquo;git subtree&rdquo; stuff, there is non-fast-forward error in my console!</p>
+
+<h1 id="checkout-and-rebuild-somewhere-else:3d7aab9f4bb9f5bcbc089980f699e2e5">Checkout and rebuild (somewhere else)</h1>
+
+<pre><code>// go to an empty folder
+git init
+git pull git@github.com:xxx/blog.git
+git remote add git@github.com:xxx/blog.git
+
+cd themes
+// find other themes at https://github.com/spf13/hugoThemes
+git clone git@github.com:mmrath/hugo-bootstrap.git
+
+// switch back to ../public folder
+git init
+git pull git@github.com:xxx/blog-site.git
+git remote add git@github.com:xxx/blog.git
+git fetch
+git co gh-pages
+
+cd ..
+hugo
+</code></pre>
 
 </div>
 
